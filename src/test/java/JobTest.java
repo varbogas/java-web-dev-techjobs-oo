@@ -1,6 +1,8 @@
 import org.junit.*;;
 import org.launchcode.techjobs_oo.*;
 
+import static org.hamcrest.core.StringEndsWith.endsWith;
+import static org.hamcrest.core.StringStartsWith.startsWith;
 import static org.junit.Assert.*;
 
 public class JobTest {
@@ -9,6 +11,7 @@ public class JobTest {
     Job job3;
     Job job4;
     Job job5;
+    Job job6;
 
     @Before
     public void makeJobs() {
@@ -17,6 +20,7 @@ public class JobTest {
         job3 = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
         job4 = new Job("Web Developer", new Employer("LaunchCode"), new Location("St. Louis"), new PositionType("Front-end developer"), new CoreCompetency("JavaScript"));
         job5 = new Job("Web Developer", new Employer("LaunchCode"), new Location("St. Louis"), new PositionType("Front-end developer"), new CoreCompetency("JavaScript"));
+        job6 = new Job("", new Employer(""), new Location(""), new PositionType(""), new CoreCompetency(""));
     }
 
     @Test
@@ -35,5 +39,20 @@ public class JobTest {
     @Test
     public void testJobsForEquality() {
         assertEquals(job4.getId(),job5.getId());
+    }
+
+    @Test
+    public void testJobToStringForBlankLines () {
+        assertThat(job3.toString(), startsWith("\n"));
+        assertThat(job3.toString(), endsWith("\n"));
+    }
+
+    @Test
+    public void emptyFieldDataNotAvailableMessage () {
+        assertEquals(job6.getName(), "Data not available");
+    }
+
+    @Test public void onlyIdFieldJobDataDoesNotExist () {
+        assertEquals(job1.toString(), "OOPS! This job does not seem to exist.");
     }
 }

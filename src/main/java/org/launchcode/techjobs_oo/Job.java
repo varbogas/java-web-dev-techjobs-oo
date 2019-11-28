@@ -56,7 +56,11 @@ public class Job {
     }
 
     public String getName() {
-        return name;
+        if(this.name.equals("")){
+            return "Data not available";
+        } else {
+            return name;
+        }
     }
 
     public Employer getEmployer() {
@@ -93,5 +97,23 @@ public class Job {
 
     public void setCoreCompetency(CoreCompetency coreCompetency) {
         this.coreCompetency = coreCompetency;
+    }
+
+    //Add a to string override
+
+    @Override
+    public String toString() {
+        if(name == null || employer == null || location == null || positionType == null || coreCompetency == null){
+            return "OOPS! This job does not seem to exist.";
+        } else {
+            return "\n"
+                    + "ID: " + id + "\n" +
+                    "Name: " + name + "\n" +
+                    "Employer: " + employer + "\n" +
+                    "Location: " + location + "\n" +
+                    "Position Type: " + positionType + "\n" +
+                    "Core Competency: " + coreCompetency +
+                    "\n";
+        }
     }
 }
