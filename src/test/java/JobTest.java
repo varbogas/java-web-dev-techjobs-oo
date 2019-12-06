@@ -41,7 +41,7 @@ public class JobTest {
     //Test that two objects that are the same except ID do NOT equal to each other
     @Test
     public void testJobsForEquality() {
-        assertEquals(job4.getId(),job5.getId());
+        assertNotEquals(job4.getId(),job5.getId());
     }
 
     //Test to string override starts and ends with blank lines
